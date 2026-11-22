@@ -134,7 +134,7 @@ public final class MainActivity extends ComponentActivity {
         setContentView(scroll);
 
         LinearLayout header = new LinearLayout(this);
-        TextView title = text("EdgeInspect", 29, Color.WHITE, true);
+        TextView title = text("PartLens", 29, Color.WHITE, true);
         header.addView(title, new LinearLayout.LayoutParams(0, -2, 1));
         Button model = button("Models");
         model.setOnClickListener(view -> modelSetup());

@@ -1,14 +1,14 @@
-# EdgeInspect
+# PartLens
 
-EdgeInspect is an offline Android visual inspection assistant for metal nuts, built for Problem Statement 5 of the Arm Bharat AI-SoC Challenge. A joint classifier and segmentation network identifies good parts, scratches, bends, discoloration, and flipped parts. Low-confidence findings and conflicts between the classifier and mask go to operator review.
+PartLens is an offline Android visual inspection assistant for metal nuts, built for Problem Statement 5 of the Arm Bharat AI-SoC Challenge. A joint classifier and segmentation network identifies good parts, scratches, bends, discoloration, and flipped parts. Low-confidence findings and conflicts between the classifier and mask go to operator review.
 
 ## Phase 1 deliverables
 
 | Deliverable | Location |
 | --- | --- |
-| Android application | [Installable APK in the Phase 1 release](https://github.com/Prabhav-05/edgeinspect-arm-ps5/releases/tag/phase-1) |
-| Demo | [Phone demo in the Phase 1 release](https://github.com/Prabhav-05/edgeinspect-arm-ps5/releases/tag/phase-1) |
-| Technical report | [PDF in the Phase 1 release](https://github.com/Prabhav-05/edgeinspect-arm-ps5/releases/tag/phase-1) |
+| Android application | [Download the Android APK](https://github.com/Prabhav-05/partlens-arm-ps5/releases/download/phase-1/PartLens-Android.apk) |
+| Demo | [Download the demo video](https://github.com/Prabhav-05/partlens-arm-ps5/releases/download/phase-1/PartLens-Demo.mp4) |
+| Technical report | [Download the technical report](https://github.com/Prabhav-05/partlens-arm-ps5/releases/download/phase-1/PartLens-Technical-Report.pdf) |
 | Source and reproducibility | This repository |
 
 ## Run on Android
@@ -59,4 +59,4 @@ To provision one authorized ADB device without using the phone's file picker:
 scripts/install_debug.sh
 ```
 
-The report source uses ReportLab 5.1.0. See the report for measured results and the verification conditions. The training images use fixed, controlled imaging. The prototype needs a representative fixture and independent factory samples before its output can be used as a production accept/reject decision.
+The report source uses ReportLab 5.1.0 and the [device results](docs/device-results.json). Run `scripts/create_report.py` with the training environment after exporting the vision model. See the report for measured results and verification conditions. The training images use fixed, controlled imaging. The prototype needs a representative fixture and independent factory samples before its output can be used as a production accept/reject decision.

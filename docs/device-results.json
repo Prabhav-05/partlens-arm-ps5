@@ -1,0 +1,22 @@
+{
+  "summary": "OnePlus CPH2487, Android 16 (API 36), Arm64 CPU with ExecuTorch 1.4.1 and XNNPACK.",
+  "checks": {
+    "Held-out Android triage": "17/18 defects sent to Hold or Review. 6/11 good samples passed. One discoloration sample was a false Pass.",
+    "Imported image timing": "100 model passes after 10 warm-up passes. Median 4.24 ms and p95 9.54 ms. Excludes file decoding and preview rendering.",
+    "Live rear-camera timing": "100 analyzed frames after warm-up. 12.7 analyzed FPS, 9.78 ms median and 15.77 ms p95 vision analysis. Camera stream check without factory parts.",
+    "Local Llama advisory": "Llama chose a surface check for a scratch and a dimensional check for a bend. First token in 1.16 s and 0.91 s. Initial load took 4.10 s. The app supplied the evidence summaries.",
+    "Inspection history and CSV": "History still showed the saved records after app restart. Android's file picker exported 11 rows with the result, location, recommendation source, and timings.",
+    "Network isolation": "The APK declares camera permission only. Both inference paths use local files. A complete handset airplane-mode run remains unverified."
+  },
+  "device_counts": {
+    "good": 11,
+    "defects": 18,
+    "defect_passes": 1,
+    "good_passes": 6,
+    "triage": {
+      "Hold": 18,
+      "Review": 4,
+      "Pass": 7
+    }
+  }
+}

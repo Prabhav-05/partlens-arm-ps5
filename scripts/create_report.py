@@ -76,7 +76,7 @@ def footer(canvas, doc):
     canvas.line(20 * mm, 17 * mm, width - 20 * mm, 17 * mm)
     canvas.setFillColor(TEXT)
     canvas.setFont("Vera", 8)
-    canvas.drawString(20 * mm, 12 * mm, "EDGEINSPECT  |  ARM BHARAT AI-SOC CHALLENGE  |  PHASE 1")
+    canvas.drawString(20 * mm, 12 * mm, "PARTLENS  |  ARM BHARAT AI-SOC CHALLENGE  |  PHASE 1")
     canvas.drawRightString(width - 20 * mm, 12 * mm, f"{doc.page:02d}")
 
 
@@ -100,7 +100,7 @@ def make_report(metrics, device, destination):
     ]))
     story = [
         p("PROBLEM STATEMENT 5  /  TECHNICAL REPORT", "kicker"),
-        p("EdgeInspect", "title"),
+        p("PartLens", "title"),
         p("Offline, on-device defect inspection and operator guidance for metal nuts.", "lead"),
         stat, Spacer(1, 7),
         p("Raw host-side metrics on the 29-image held-out split. See page 3 for phone results.", "small"),
@@ -112,7 +112,7 @@ def make_report(metrics, device, destination):
         p("Deployment architecture", "h2"),
         grid([
             ["Stage", "Implementation"],
-            ["Capture and preprocess", "CameraX latest-frame analysis or local image import; centered square crop; 192 x 192 RGB tensor."],
+            ["Capture and preprocess", "CameraX latest-frame analysis or local image import. Centered square crop and 192 x 192 RGB tensor."],
             ["Vision and triage", "ExecuTorch 1.4.1 with XNNPACK on Arm CPU. The CNN emits five class logits and a 48 x 48 defect mask."],
             ["Advisory", "Llama 3.2 1B Instruct SpinQuant on a separate ExecuTorch worker. Inputs are class, severity, location, confidence, and decision."],
             ["Operator output", "Display Pass, Hold, or Review. Validate the action ID and screen the explanation for unsupported claims before updating the saved record."],
@@ -145,7 +145,7 @@ def make_report(metrics, device, destination):
           "one positive class. Mask IoU averages only defective images."),
         p("Triage and severity", "h2"),
         p(f"The classification confidence cutoff is {metrics['class_threshold']:.2f}. Mask pixels use "
-          f"{metrics['mask_threshold']:.2f}; a good prediction with a contiguous region covering "
+          f"{metrics['mask_threshold']:.2f}. A good prediction with a contiguous region covering "
           f"{pct(metrics['anomaly_review_threshold'])} of the crop or more goes to Review. Low, Medium and High "
           "severity correspond to region area below 1%, from 1% to below 5%, and at least 5%. Area is an "
           "image-space proxy with no dimensional calibration."),
@@ -169,11 +169,11 @@ def make_report(metrics, device, destination):
           '<link href="https://www.mvtec.com/research-teaching/datasets/mvtec-ad" color="#007565">MVTec AD and CC BY-NC-SA 4.0 terms</link>', "small"),
         p('<link href="https://github.com/pytorch/executorch/tree/v1.4.1" color="#007565">ExecuTorch 1.4.1</link>  |  '
           '<link href="https://huggingface.co/software-mansion/react-native-executorch-llama-3.2" color="#007565">Llama 3.2 SpinQuant export</link>  |  '
-          '<link href="https://github.com/Prabhav-05/edgeinspect-arm-ps5" color="#007565">Project source</link>', "small"),
+          '<link href="https://github.com/Prabhav-05/partlens-arm-ps5" color="#007565">Project source</link>', "small"),
     ]
     destination.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(str(destination), pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm,
-                            topMargin=17 * mm, bottomMargin=22 * mm, title="EdgeInspect Phase 1 Technical Report",
+                            topMargin=17 * mm, bottomMargin=22 * mm, title="PartLens Phase 1 Technical Report",
                             subject="Arm Bharat AI-SoC Challenge, Problem Statement 5")
     doc.build(story, onFirstPage=footer, onLaterPages=footer)
 
@@ -181,8 +181,8 @@ def make_report(metrics, device, destination):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--metrics", type=Path, default=Path(".local/vision/metrics.json"))
-    parser.add_argument("--device", type=Path, default=Path(".local/evidence/device_results.json"))
-    parser.add_argument("--output", type=Path, default=Path("output/pdf/EdgeInspect-Technical-Report.pdf"))
+    parser.add_argument("--device", type=Path, default=Path("docs/device-results.json"))
+    parser.add_argument("--output", type=Path, default=Path("output/pdf/PartLens-Technical-Report.pdf"))
     args = parser.parse_args()
     make_report(json.loads(args.metrics.read_text()), json.loads(args.device.read_text()), args.output)
 
