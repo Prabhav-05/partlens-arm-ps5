@@ -6,9 +6,9 @@ EdgeInspect is an offline Android visual inspection assistant for metal nuts, bu
 
 | Deliverable | Location |
 | --- | --- |
-| Android application | [Installable APK in the Phase 1 release](../../releases/tag/phase-1) |
-| Demo | [Phone demo in the Phase 1 release](../../releases/tag/phase-1) |
-| Technical report | [PDF in the Phase 1 release](../../releases/tag/phase-1) |
+| Android application | [Installable APK in the Phase 1 release](https://github.com/Prabhav-05/edgeinspect-arm-ps5/releases/tag/phase-1) |
+| Demo | [Phone demo in the Phase 1 release](https://github.com/Prabhav-05/edgeinspect-arm-ps5/releases/tag/phase-1) |
+| Technical report | [PDF in the Phase 1 release](https://github.com/Prabhav-05/edgeinspect-arm-ps5/releases/tag/phase-1) |
 | Source and reproducibility | This repository |
 
 ## Run on Android
@@ -36,7 +36,7 @@ flowchart LR
     F --> I[Operator alert, history and CSV]
 ```
 
-Both inference paths run on the Arm CPU. Camera and vision use one worker, while Llama uses another worker. Only the structured finding reaches Llama. A validated action ID maps to app-managed wording. If the model is unavailable or its response fails validation, the record retains labeled default guidance. The operator decision is made by the vision policy. Severity is the largest predicted region's fraction of the image crop and is a prototype proxy for defect extent.
+Both inference paths run on the Arm CPU. Camera and vision use one worker, while Llama uses another worker. Only the structured finding reaches Llama. A validated action ID maps to app-managed wording. When a valid Llama action comes with an unsupported explanation, the app keeps the action and shows its own evidence summary. If the action is invalid or the model is unavailable, the record retains labeled default guidance. The operator decision is made by the vision policy. Severity is the largest predicted region's fraction of the image crop and is a prototype proxy for defect extent.
 
 ## Build and reproduce
 
@@ -59,4 +59,4 @@ To provision one authorized ADB device without using the phone's file picker:
 scripts/install_debug.sh
 ```
 
-See the report for measured results and the verification conditions. The training images use fixed, controlled imaging. The prototype needs a representative fixture and independent factory samples before its output can be used as a production accept/reject decision.
+The report source uses ReportLab 5.1.0. See the report for measured results and the verification conditions. The training images use fixed, controlled imaging. The prototype needs a representative fixture and independent factory samples before its output can be used as a production accept/reject decision.
